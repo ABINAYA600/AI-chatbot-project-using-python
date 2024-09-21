@@ -1,0 +1,36 @@
+import re
+
+
+def chatbot_response(message):
+    message = message.lower()
+
+    if re.search(r"hello|hi|hey", message):
+        return "Hello! How can I help you today?"
+    elif re.search(r"how are you", message):
+        return "I'm just a bot, but I'm doing well! How about you?"
+    elif re.search(r"i am fine", message):
+    	return " Oh!! good to hear " 
+    elif re.search(r"your name", message):
+        return "I'm a simple chatbot. What is your name?"
+    elif re.search(r"my name is (.*)", message):
+        name = re.search(r"my name is (.*)", message).group(1)
+        return f"Hello, {name}!"
+    elif re.search(r"bye|goodbye", message):
+        return "Goodbye! Have a great day!"
+    else:
+        return "I'm not sure I understand. Can you ask that differently?"
+
+
+def chat():
+    print("Chatbot: Hi there! Ask me anything.")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ["bye", "exit", "quit"]:
+            print("Chatbot: Goodbye!")
+            break
+        response = chatbot_response(user_input)
+        print(f"Chatbot: {response}")
+
+
+if __name__ == "__main__":
+    chat()
